@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"strconv"
+	//"strconv"
 	"time"
 )
 
@@ -17,25 +17,21 @@ func (u user) PrintName() string {
 	return u.Name
 }
 
-func (u user) PrintInfo() string {
-	year := u.DOB[9:len(u.DOB)]
-	i, err := strconv.Atoi(year)
-	fmt.Println(i)
-	fmt.Println(err)
+func (u user) PrintInfo() int  {
 	t := time.Now()
-  fmt.Sprintf(t)
-	Curyear := t[0:4]
-	i1, err1 := strconv.Atoi(Curyear)
-	age := i1 - i
-	//fmt.Println(t1)
-	//age := t - i
-	fmt.Println(age)
-	//fmt.Println(u.Name, "who was born in", u.City, "would be" )
-	return u.Name
+	//fmt.Println(t.Year())
+	value := "03/07/1917"
+	layout := "01/02/2006"
+	d, _ := time.Parse(layout, value)
+	//fmt.Println(d.Year())
+	age := (t.Year() - d.Year())
+	//fmt.Println(age)
+	fmt.Println("Betty Holberton who was born in", u.City, "would be", age, "years old today.")
+	return age
 }
 
 func main() {
-	u := user{"Betty Holberton", "March 7, 1917", "Philadelphia"}
+	u := user{"Betty Holberton", "1917-Mar-07", "Philadelphia"}
 	u.PrintName()
 	u.PrintInfo()
 }
